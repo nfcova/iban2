@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no, email=no, address=no">
+
+<title>Ödeme Bilgileri</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 20px 14px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #f6f6f6;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    color: #111;
+}
+
+/* ANA KART */
+
+.card {
+    width: 100%;
+    max-width: 620px;
+
+    background: #fff;
+
+    border-radius: 32px;
+
+    padding: 42px 28px 35px;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.06);
+}
+
+
+/* ÜST İKON */
+
+.payment-icon {
+    width: 54px;
+    height: 54px;
+
+    margin: 0 auto 22px;
+
+    border-radius: 50%;
+
+    background: #f1f1f1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 27px;
+}
+
+
+/* BAŞLIK */
+
+h1 {
+    margin: 0;
+
+    text-align: center;
+
+    font-size: 38px;
+    font-weight: 750;
+
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    margin: 10px 0 38px;
+
+    text-align: center;
+
+    color: #999;
+
+    font-size: 16px;
+}
+
+
+/* BİLGİ ALANI */
+
+.section {
+    margin-bottom: 27px;
+}
+
+.label {
+    display: block;
+
+    margin: 0 0 9px 3px;
+
+    color: #888;
+
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+/* DEĞER KUTUSU */
+
+.value {
+    width: 100%;
+    min-height: 65px;
+
+    padding: 0 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #f5f5f5;
+
+    border-radius: 17px;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    text-align: center;
+}
+
+
+/* IBAN */
+
+.iban {
+    font-size: clamp(15px, 4.3vw, 23px);
+
+    letter-spacing: .15px;
+
+    white-space: nowrap;
+
+    color: #111 !important;
+    -webkit-text-fill-color: #111 !important;
+
+    text-decoration: none !important;
+
+    user-select: text;
+}
+
+.iban a {
+    color: #111 !important;
+    -webkit-text-fill-color: #111 !important;
+    text-decoration: none !important;
+}
+
+
+/* KOPYALA BUTONU */
+
+.copy-btn {
+    width: 100%;
+    height: 62px;
+
+    margin-top: 11px;
+
+    border: none;
+
+    border-radius: 17px;
+
+    background: #111;
+
+    color: #fff;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .15s ease;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+.copy-btn:active {
+    transform: scale(.985);
+}
+
+.copy-btn.copied {
+    background: #252525;
+}
+
+
+/* ALT YAZI */
+
+.warning {
+    margin-top: 35px;
+
+    text-align: center;
+
+    color: #aaa;
+
+    font-size: 14px;
+}
+
+
+/* TELEFON */
+
+@media (max-width: 500px) {
+
+    body {
+        padding: 15px 10px;
+        align-items: center;
+    }
+
+    .card {
+        padding: 35px 20px 30px;
+
+        border-radius: 28px;
+    }
+
+    .payment-icon {
+        width: 48px;
+        height: 48px;
+
+        margin-bottom: 19px;
+
+        font-size: 24px;
+    }
+
+    h1 {
+        font-size: 34px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+
+        margin-top: 8px;
+        margin-bottom: 32px;
+    }
+
+    .section {
+        margin-bottom: 24px;
+    }
+
+    .label {
+        font-size: 15px;
+    }
+
+    .value {
+        min-height: 62px;
+
+        border-radius: 16px;
+
+        font-size: 22px;
+    }
+
+    .iban {
+        font-size: clamp(14px, 4.4vw, 22px);
+    }
+
+    .copy-btn {
+        height: 59px;
+
+        border-radius: 16px;
+
+        font-size: 16px;
+    }
+
+    .warning {
+        margin-top: 30px;
+
+        font-size: 13px;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="card">
+
+    <!-- 🌐 İKON -->
+    <div class="payment-icon">
+        🌐︎
+    </div>
+
+
+    <h1>Ödeme Bilgileri</h1>
+
+    <div class="subtitle">
+        Ödeme yapmak için aşağıdaki bilgileri kullanabilirsiniz.
+    </div>
+
+
+    <!-- İSİM -->
+
+    <div class="section">
+
+        <span class="label">
+            İsim Soyisim
+        </span>
+
+        <div class="value">
+            HALİT ATEŞ
+        </div>
+
+        <button
+            class="copy-btn"
+            id="nameButton">
+
+            İsim Soyismi Kopyala
+
+        </button>
+
+    </div>
+
+
+    <!-- IBAN -->
+
+    <div class="section">
+
+        <span class="label">
+            IBAN
+        </span>
+
+        <div class="value iban">
+            TR50 0011 1000 0000 0047 3897 34
+        </div>
+
+        <button
+            class="copy-btn"
+            id="ibanButton">
+
+            IBAN'ı Kopyala
+
+        </button>
+
+    </div>
+
+
+    <div class="warning">
+        Ödeme yaparken bilgileri kontrol ediniz.
+    </div>
+
+</div>
+
+
+<script>
+
+/* KOPYALAMA */
+
+function kopyala(metin, buton, normalYazi) {
+
+    if (navigator.clipboard) {
+
+        navigator.clipboard.writeText(metin)
+        .then(() => {
+
+            buton.innerText = "Kopyalandı ✓";
+            buton.classList.add("copied");
+
+            setTimeout(() => {
+
+                buton.innerText = normalYazi;
+                buton.classList.remove("copied");
+
+            }, 1500);
+
+        })
+        .catch(() => {
+
+            eskiKopyalama(metin, buton, normalYazi);
+
+        });
+
+    } else {
+
+        eskiKopyalama(metin, buton, normalYazi);
+
+    }
+}
+
+
+/* ESKİ TELEFONLAR İÇİN */
+
+function eskiKopyalama(metin, buton, normalYazi) {
+
+    const textarea = document.createElement("textarea");
+
+    textarea.value = metin;
+
+    textarea.style.position = "fixed";
+    textarea.style.left = "-9999px";
+
+    document.body.appendChild(textarea);
+
+    textarea.focus();
+    textarea.select();
+
+    document.execCommand("copy");
+
+    textarea.remove();
+
+    buton.innerText = "Kopyalandı ✓";
+    buton.classList.add("copied");
+
+    setTimeout(() => {
+
+        buton.innerText = normalYazi;
+        buton.classList.remove("copied");
+
+    }, 1500);
+}
+
+
+/* İSİM */
+
+document
+.getElementById("nameButton")
+.addEventListener("click", function() {
+
+    kopyala(
+        "HALİT ATEŞ",
+        this,
+        "İsim Soyismi Kopyala"
+    );
+
+});
+
+
+/* IBAN */
+
+document
+.getElementById("ibanButton")
+.addEventListener("click", function() {
+
+    kopyala(
+        "TR500011100000000047389734",
+        this,
+        "IBAN'ı Kopyala"
+    );
+
+});
+
+</script>
+
+</body>
+</html>
